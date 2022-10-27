@@ -1,0 +1,32 @@
+.container
+  .row
+    .col
+      %p
+        %button.btn.btn-default#pause Pause Game
+        %button.btn.btn-info#resume Resume Game
+        %button.btn.btn-danger#restart Restart
+      %p.time
+        %span.minutes 0
+        %span.colon :
+        %span.seconds 00
+      %div.adjust
+        %span Easy
+        %input.difficulty{:type => "range", :min => 1, :max => 7, :value => 4}
+        %span Hard
+      %p
+        %button.btn.btn-success#solve Solve Puzzle
+        %button.btn.btn-primary#new New Puzzle
+  .sudoku
+    -3.times do
+      .s-row
+        -3.times do
+          .square
+            -9.times do
+              .cell 
+                %span.label 1
+                %span.value
+  .row
+    .col
+      .numbers-bar
+        - (1..9).each do |i|
+          .number= i

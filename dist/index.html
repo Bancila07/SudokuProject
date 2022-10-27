@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Dynamic Sudoku</title>
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1"><link
+        rel='stylesheet'
+        href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css'><link
+        rel="stylesheet"
+        href="style.css">
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+  <ul>
+    <li style="float:left" ><a class="active" >Game</a></li>
+  </ul>
+  <div class="body"></div>
+  <h1>Sudoku</h1>
+  <div class="container-global">
+<div class='container'>
+  <div class='row'>
+    <div class='col'>
+      <p>
+        <button class='btn btn-primary' id='new'>New Puzzle</button>
+      </p>
+      <p>
+      <span id="timer-label">Time</span>
+      <p class='time'>
+        <span class='minutes'>0</span>
+        <span class='colon'>:</span>
+        <span class='seconds'>00</span>
+      </p>
+      </p>
+      <div class='adjust'>
+        <h6 id="game-difficulty-label">Game difficulty</h6>
+        <span id="difficulty-label">Easy</span>
+        <input class='difficulty' max='7' min='1' type='range' value='4'>
+        <span id="difficulty-label2">Hard</span>
+      </div>
+      <p>
+        <button class='btn btn-default' id='pause'>Pause</button>
+        <button class='btn btn-info' id='resume'>Resume</button>
+        <button class='btn btn-danger' id='restart'>Restart</button>
+      </p>
+      <p>
+        <button class='btn btn-success' id='solve'>Solve Puzzle</button>
+      </p>
+    </div>
+  </div>
+  </div>
+  <div class="container-info">
+    <h3>How to Play Sudoku?</h3>
+    <p>Sudoku is played on a grid of 9 x 9 spaces. Within the rows and columns are 9 “squares”<br>
+      (made up of 3 x 3 spaces). Each row, column and square (9 spaces each) needs to be filled<br>
+      out with the numbers 1-9, without repeating any numbers within the row, column or square.<br>
+      Does it sound complicated? As you can see from the image below of an actual Sudoku grid, each<br>
+      Sudoku grid comes with a few spaces already filled in; the more spaces filled in, the easier<br>
+      the game – the more difficult Sudoku puzzles have very few spaces that are already filled in.</p>
+  </div>
+  <div class='sudoku'>
+    <div class='s-row'>
+      <div class='square'>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+      </div>
+      <div class='square'>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+      </div>
+      <div class='square'>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+      </div>
+    </div>
+    <div class='s-row'>
+      <div class='square'>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+      </div>
+      <div class='square'>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+      </div>
+      <div class='square'>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+      </div>
+    </div>
+    <div class='s-row'>
+      <div class='square'>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+      </div>
+      <div class='square'>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+      </div>
+      <div class='square'>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+        <div class='cell'>
+          <span class='label'>1</span>
+          <span class='value'></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <footer>
+  <div class="footer">
+    <div class="block-copyright">Băncilă Alexandru</div>
+  </div>
+  </footer>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script><script  src="./script.js"></script>
+
+</body>
+</html>
